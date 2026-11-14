@@ -1,0 +1,183 @@
+
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data: https:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOUther</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div id="sidebarApps" class="sidebar-apps"></div>
+    <div class="sidebar-bottom">
+      <button id="settingsButton" class="side-app settings-button" title="Ustawienia">⚙</button>
+    </div>
+  </aside>
+
+  <nav class="tabs" aria-label="Karty">
+    <button class="new-tab" id="newTab" title="Nowa karta">+</button>
+    <div id="tabList" class="tab-list"></div>
+  </nav>
+
+  <section class="toolbar">
+    <div class="nav-buttons">
+      <button id="back" title="Wstecz">←</button>
+      <button id="forward" title="Dalej">→</button>
+      <button id="reload" title="Odśwież">↻</button>
+    </div>
+
+    <form id="addressForm" class="address-wrap">
+      <span class="lock">◆</span>
+      <input id="address" autocomplete="off" spellcheck="false"
+        placeholder="Wyszukaj w Google lub wpisz adres...">
+      <button class="go" type="submit">Otwórz</button>
+    </form>
+
+    <button class="tool-button" id="home" title="Strona startowa">⌂</button>
+    <button class="tool-button" id="menu" title="Menu">⋯</button>
+  </section>
+
+  <main id="stage">
+    <section id="startPage" class="start-page">
+      <div class="hero">
+        <div class="hero-logo">S</div>
+        <p class="eyebrow">YOUR SPACE ON THE INTERNET</p>
+        <h1>SOU<span>ther</span></h1>
+      </div>
+    </section>
+
+    <section id="settingsPage" class="settings-page" style="display:none">
+      <div class="settings-content">
+        <button id="settingsBack" class="settings-back">← Powrót</button>
+        <p class="eyebrow">SOUTHER BROWSER</p>
+        <h2>Ustawienia</h2>
+        <p class="settings-description">Dostosuj swoją przeglądarkę.</p>
+
+        <div class="settings-card">
+          <h3>Wygląd</h3>
+          <p>Motyw przeglądarki</p>
+          <select id="themeSelect" class="theme-select">
+            <option value="purple">Purple • Domyślny</option>
+            <option value="ocean">Ocean • Błękitny</option>
+            <option value="forest">Forest • Zielony</option>
+            <option value="rose">Rose • Różowy</option>
+            <option value="amber">Amber • Złoty</option>
+          </select>
+        </div>
+
+        <div class="settings-card">
+          <h3>Przeglądarka</h3>
+          <p>Wersja SOUther</p>
+          <span class="settings-value">0.2.0</span>
+        </div>
+<div class="settings-card import-card">
+  <h3>Import danych</h3>
+  <p>Przenieś swoje zakładki i hasła do SOUthera.</p>
+
+  <label for="importBrowserSelect">
+    Z jakiej przeglądarki przenosisz dane?
+  </label>
+
+  <select id="importBrowserSelect" class="theme-select">
+    <option value="chrome">Google Chrome</option>
+    <option value="edge">Microsoft Edge</option>
+    <option value="opera">Opera / Opera GX</option>
+    <option value="firefox">Mozilla Firefox</option>
+    <option value="brave">Brave</option>
+    <option value="vivaldi">Vivaldi</option>
+    <option value="other">Inna przeglądarka</option>
+  </select>
+
+  <div class="import-help" id="importHelp">
+    Wyeksportuj zakładki do HTML, a hasła do CSV.
+    Następnie wybierz odpowiednie pliki.
+  </div>
+
+  <div class="import-actions">
+    <button id="importBookmarksButton" class="primary-button">
+      Importuj zakładki
+    </button>
+
+    <button id="importPasswordsButton" class="secondary-button">
+      Importuj hasła
+    </button>
+  </div>
+
+  <p id="importStatus" class="import-status" role="status">
+    Twoje dane pozostają na tym komputerze.
+  </p>
+
+  <div id="importedBookmarks" class="imported-bookmarks"></div>
+</div>
+
+        <div class="settings-card app-manager">
+          <h3>Aplikacje na pasku bocznym</h3>
+          <p>Dodawaj, usuwaj i zmieniaj kolejność aplikacji.</p>
+
+          <div id="managedApps" class="managed-apps"></div>
+
+          <div class="add-app-area">
+            <label for="appSelect">Dodaj aplikację</label>
+            <div class="add-app-row">
+              <select id="appSelect"></select>
+              <button id="addAppButton" class="primary-button">Dodaj</button>
+            </div>
+          </div>
+
+          <div class="add-app-area">
+            <label>Dodaj własną stronę</label>
+
+            <form id="customAppForm" class="custom-app-form">
+              <input id="customAppName" placeholder="Nazwa strony"
+                maxlength="25" required>
+
+              <input id="customAppUrl" placeholder="Adres strony"
+                required>
+
+              <input id="customAppIcon" type="file"
+                accept="image/png,image/jpeg,image/webp">
+
+              <label for="customIconPreset">
+                Wybierz ikonę z kolekcji SOUther
+              </label>
+
+              <select id="customIconPreset">
+                <option value="">Automatyczna ikona strony</option>
+                <option value="shape:dots">Kropki</option>
+                <option value="shape:lines">Linie</option>
+                <option value="shape:triangle">Trójkąt</option>
+                <option value="shape:circle">Okrąg</option>
+                <option value="shape:diamond">Diament</option>
+                <option value="shape:orbit">Orbita</option>
+                <option value="shape:spark">Gwiazda</option>
+                <option value="shape:grid">Siatka</option>
+                <option value="shape:wave">Fala</option>
+                <option value="shape:hexagon">Sześciokąt</option>
+              </select>
+
+              <button class="primary-button" type="submit">
+                Dodaj stronę
+              </button>
+            </form>
+
+            <p class="small-note">
+              Własne strony mogą mieć własną ikonę lub ikonę automatyczną.
+            </p>
+          </div>
+
+          <button id="restoreApps" class="secondary-button">
+            Przywróć domyślne aplikacje
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div id="browserViews"></div>
+  </main>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

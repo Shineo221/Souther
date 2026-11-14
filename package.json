@@ -1,0 +1,62 @@
+{
+  "name": "souther-browser",
+  "productName": "SOUther",
+  "version": "0.1.0",
+  "description": "SOUther - premium desktop browser",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^38.8.6",
+    "electron-builder": "^26.18.0"
+  },
+  "allowScripts": {
+    "electron@38.8.6": true
+  },
+  "dependencies": {
+    "@ghostery/adblocker-electron": "^2.20.3",
+    "cross-fetch": "^4.1.0",
+    "electron-updater": "^6.8.11"
+  },
+  "build": {
+    "appId": "com.souther.browser",
+    "productName": "SOUther",
+"publish": [
+  {
+    "provider": "generic",
+    "url": "http://localhost:8080/updates/"
+  }
+],
+
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**/*",
+      "!node_modules/.cache/**/*"
+    ],
+    "win": {
+      "icon": "assets/souther.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "SOUther-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "SOUther"
+    }
+  }
+}
